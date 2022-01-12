@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>my form</h1>
+    <form name="form1">
+          
+       Username:<input type='text' name='text1'/></li>
+       <br>
+       <input type="submit" name="submit" value="Submit" onclick="stringlength(document.form1.text1,3,10)"/><br>
+        
+
+       Email: <input type="text" name="email"><Br>
+        <input type="submit" name="submit" value="Submit" onclick="ValidateEmail(document.form1.email)"/><br>
+        password: <input type='text' name='text2'/><br>
+            <input type="submit" name="submit" value="Submit" onclick="CheckPassword(document.form1.text2)" /><br>
+            phonre:<input type="text" id="phone"><br>
+        
+        <input type="button" id="btn" onclick="myFunction1()" value="submit"><br><br>
+
+        age:<input type="number" id="age"><br> 
+        
+        <input type="button" id="btn" onclick="myFunction()" value="submit"><br>
+
+        <br><textarea id="textarea"></textarea><br>
+        <input type="submit" name="submit" value="Submit" onclick="stringlength1(document.form1.textarea,20)"/><br>
+    </form><br>
+ 
+     
+        </form>
+    <p id="demo"></p>
+    <script>
+
+        function myFunction() {
+            // Get the value of the input field with id="numb"
+          
+            let x = document.getElementById("age").value;
+            // If x is Not a Number or less than one or greater than 10
+            let text;
+            if (isNaN(x) || x> 18 ) {
+                text = "Input age OK";
+            } else {
+                text = "Input age smaller than 18";
+            }
+            document.getElementById("demo").innerHTML = text;
+        }
+        function myFunction1(){
+        var x = document.getElementById("phone").value;
+            // If x is Not a Number or less than one or greater than 10
+            
+            if (x="777"  +  x ||  x.length == 9 ) {
+            console.log(x);
+            } else {
+                console.log("input false");
+            }}
+            function stringlength(inputtxt, minlength, maxlength)
+{ 
+var field = inputtxt.value; 
+var mnlen = minlength;
+var mxlen = maxlength;
+
+if(field.length<mnlen || field.length> mxlen)
+{ 
+alert("Please input the userid between " +mnlen+ " and " +mxlen+ " characters");
+return false;
+}
+else
+{ 
+alert('Your userid have accepted.');
+return true;
+}
+}
+function stringlength1(inputtxt, minlength)
+{ 
+var field = inputtxt.value; 
+var mnlen = minlength;
+
+
+if( field.length< mnlen)
+{ 
+alert("Please input the userid between " +mnlen+  " characters");
+return false;
+}
+else
+{ 
+alert('Your userid have accepted.');
+return true;
+}
+}
+function CheckPassword(inputtxt) 
+{ 
+var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+if(inputtxt.value.match(paswd)) 
+{ 
+alert('Correct, try another...')
+return true;
+}
+else
+{ 
+alert('Wrong...!')
+return false;
+}
+}  
+function ValidateEmail(inputText)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(inputText.value.match(mailformat))
+{
+alert("Valid email address!");
+document.form1.text1.focus();
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+document.form1.text1.focus();
+return false;
+}
+}
+    </script>
+</body>
+
+
+
+
+
+
+</html>
