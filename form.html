@@ -2,138 +2,255 @@
 <html>
 
 <head>
-<style>
-body{text-align: center;
-}
-form{
-text-align: center;
-width: 100vw;
-background-color: bisque;
+    <style>
+        body {
+            text-align: center;
+            background-color: bisque;
+        }
 
-height: 50vw;
+        form {
+            text-align: center;
+            width: 100vw;
+            background-color: bisque;
 
-}
+            height: 50vw;
 
-</style>
+        }
+
+        input {
+            text-align: center;
+            width: 30vw;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background-color: white;
+            height: 3vw;
+
+        }
+
+        button {
+            text-align: center;
+            width: 20vw;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background-color: rgb(46, 44, 44);
+            height: 2vw;
+
+        }
+    </style>
 </head>
 
 
 <body>
     <h1>my form</h1>
-    <form name="form1">
-          
-       Username:<input type='text' name='text1'/></li>
-       <br>
-       <input type="submit" name="submit" value="Submit" onclick="stringlength(document.form1.text1,3,10)"/><br>
-        
+    <form action="index.html" id="form" name="form1" onsubmit="return valid();">
+        <div class="form-group">
+            <input type="text" name="name" id="name" onkeyup="nameval()" class="form-control" placeholder="your name">
+            <div id="message"></div>
+        </div>
+        <div class="form-group">
+            <input type="number" name="age" id="age" class="form-control" placeholder="your age" onkeyup="date()">
+            <div id="message1"></div>
 
-       Email: <input type="text" name="email"><Br>
-        <input type="submit" name="submit" value="Submit" onclick="ValidateEmail(document.form1.email)"/><br>
-        password: <input type='text' name='text2'/><br>
-            <input type="submit" name="submit" value="Submit" onclick="CheckPassword(document.form1.text2)" /><br>
-            phonre:<input type="text" id="phone"><br>
-        
-        <input type="button" id="btn" onclick="myFunction1()" value="submit"><br><br>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control" placeholder="email address"
+                onkeyup="Validemail()">
+            <div id="message2"></div>
 
-        age:<input type="number" id="age"><br> 
-        
-        <input type="button" id="btn" onclick="myFunction()" value="submit"><br>
+        </div>
+        <div class="form-group">
+            <input type="password" name="pass" id="pass" class="form-control" placeholder="password"
+                onkeyup="validatePassword()">
+            <div id="message3"></div>
 
-        <br><textarea id="textarea"></textarea><br>
-        <input type="submit" name="submit" value="Submit" onclick="stringlength1(document.form1.textarea,20)"/><br>
-    </form><br>
- 
-     
-        </form>
+        </div>
+
+
+      
+        <div class="form-group">
+            <input type="phone" name="phone" id="phone" class="form-control" placeholder="phone" onkeyup="Validphone()">
+            <div id="message5"></div>
+        </div>
+        <div class="form-group">
+            <input type="url" name="website" id="website" class="form-control" placeholder="website"
+                onkeyup="ValidURL()">
+            <div id="message6"></div>
+        </div>
+        <div class="form-group">
+            <input type="text" name="textarea" id="textarea" class="form-control" placeholder="textarea"
+                onkeyup="ValidText()">
+            <div id="message7"></div>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+
+    </form>
     <p id="demo"></p>
     <script>
 
-        function myFunction() {
-            // Get the value of the input field with id="numb"
-          
-            let x = document.getElementById("age").value;
-            // If x is Not a Number or less than one or greater than 10
-            let text;
-            if (isNaN(x) || x> 18 ) {
-                text = "Input age OK";
-            } else {
-                text = "Input age smaller than 18";
+        function valid() {
+            var form = document.getElementById("form");
+            var name = document.form1.name.value;
+            var pass = document.getElementById("pass").value;
+
+            var email = document.getElementById("email").value;
+            var age = document.getElementById("age").value;
+            var phone = document.getElementById("phone").value;
+            var textarea = document.getElementById("textarea").value;
+
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            console.log(strongRegex);
+
+            if (name == "" && age == "" && email == "" && pass == "" && conpass == "" && phone == "" && website == "" && textarea == "") {
+                document.getElementById("message").innerHTML = "<h6 style='color:black;'>name can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message2").innerHTML = "<h6 style='color:black;'>email can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message1").innerHTML = "<h6 style='color:black;'>age can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message3").innerHTML = "<h6 style='color:black;'>password can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message6").innerHTML = "<h6 style='color:yellow;'>website can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message5").innerHTML = "<h6 style='color:black;'>phone can't be mor than 9digit, this file requaiyellow</h6>";
+                document.getElementById("message7").innerHTML = "<h6 style='color:black;'>textarea must be more than 20 char</h6>";
+
+                return false;
+            } else if (name == "") {
+                document.getElementById("message").innerHTML = "<h6 style='color:black;'>name can't be blank, this file requaiyellow</h6>";
+                return false;
+            } else if (age == "") {
+
+                document.getElementById("message1").innerHTML = "<h6 style='color:black;'>age can't be blank, this file requaiyellow</h6>";
+                return false;
+            } else if (email == "") {
+
+                document.getElementById("message2").innerHTML = "<h6 style='color:black;'>email can't be blank, this file requaiyellow</h6>";
+                return false;
             }
-            document.getElementById("demo").innerHTML = text;
+            else if (pass == "") {
+
+                document.getElementById("message3").innerHTML = "<h6 style='color:black;'>password can't be blank, this file requaiyellow</h6>";
+                return false;
+
+
+
+            }
+            else if (textarea == "") {
+
+                document.getElementById("message7").innerHTML = "<h6 style='color:black;'>textarea can't be blank, this file requaiyellow</h6>";
+                return false;
+
+
+
+            } else if (phone == "") {
+                document.getElementById("message5").innerHTML = "<h6 style='color:black;'>phone can't be 10 digit or more, this file requaiyellow</h6>";
+                return false;
+            } else if (website == "") {
+                document.getElementById("message6").innerHTML = "<h6 style='color:yellow;'>website can't be blank, this file requaiyellow</h6>";
+                return false;
+            } else if (age > 18) {
+
+                document.getElementById("message1").innerHTML = "<h6 style='color:black;'>age must be less than 19 </h6>";
+                return false;
+            }
+
+
+
         }
-        function myFunction1(){
-        var x = document.getElementById("phone").value;
-            // If x is Not a Number or less than one or greater than 10
-            
-            if (x="777"  +  x ||  x.length == 9 ) {
-            console.log(x);
+        function nameval() {
+            var name = document.getElementById('name').value;
+            var minNumberofChars = 3;
+            var maxNumberofChars = 8;
+
+            if (name.length < minNumberofChars || name.length > maxNumberofChars) {
+                document.getElementById('message').innerHTML = "name should contain atleast one 3 character and less than 8";
+                return false;
             } else {
-                console.log("input false");
-            }}
-            function stringlength(inputtxt, minlength, maxlength)
-{ 
-var field = inputtxt.value; 
-var mnlen = minlength;
-var mxlen = maxlength;
+                document.getElementById('message').innerHTML = "";
+                return true;
+            }
+        }
+        function validatePassword() {
+            var newPassword = document.getElementById('pass').value;
+            var minNumberofChars = 6;
+            var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
-if(field.length<mnlen || field.length> mxlen)
-{ 
-alert("Please input the userid between " +mnlen+ " and " +mxlen+ " characters");
-return false;
-}
-else
-{ 
-alert('Your userid have accepted.');
-return true;
-}
-}
-function stringlength1(inputtxt, minlength)
-{ 
-var field = inputtxt.value; 
-var mnlen = minlength;
+            if (!regularExpression.test(newPassword) && newPassword.length < minNumberofChars) {
+                document.getElementById('message3').innerHTML = "password should contain atleast one number and one special character";
+                return false;
+            } else {
+                document.getElementById('message3').innerHTML = "";
+                return true;
+            }
+        }
+
+        function date() {
+            var age = document.getElementById('age').value;
+            var maidate = 18;
 
 
-if( field.length< mnlen)
-{ 
-alert("Please input the userid between " +mnlen+  " characters");
-return false;
-}
-else
-{ 
-alert('Your userid have accepted.');
-return true;
-}
-}
-function CheckPassword(inputtxt) 
-{ 
-var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
-if(inputtxt.value.match(paswd)) 
-{ 
-alert('Correct, try another...')
-return true;
-}
-else
-{ 
-alert('Wrong...!')
-return false;
-}
-}  
-function ValidateEmail(inputText)
-{
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(inputText.value.match(mailformat))
-{
-alert("Valid email address!");
-document.form1.text1.focus();
-return true;
-}
-else
-{
-alert("You have entered an invalid email address!");
-document.form1.text1.focus();
-return false;
-}
-}
+            if (age <= maidate) {
+                document.getElementById('message1').innerHTML = "your age must be 18 or more than 18";
+            } else {
+                document.getElementById('message1').innerHTML = "";
+                return true;
+            }
+        }
+        function Validphone() {
+            var me = document.getElementById('phone').value;
+            var regex = 9;
+            if (me.length > regex || me.length != regex) {
+                document.getElementById('message5').innerHTML = "Please enter valid number.";
+                return false;
+            } else {
+                document.getElementById('message5').innerHTML = "";
+                return true;
+            }
+        }
+        function ValidURL() {
+            var me = document.getElementById('website').value;
+            var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+
+            if (!regex.test(me)) {
+                document.getElementById('message6').innerHTML = "Please enter valid URL.";
+                return false;
+            } else {
+                document.getElementById('message6').innerHTML = "";
+                return true;
+            }
+        }
+        function ValidText() {
+            var text = document.getElementById('textarea').value;
+            var len = 20;
+            if (text.length < len || text.length == len) {
+                document.getElementById('message7').innerHTML = "textarea should be mor than 20 char.";
+                return false;
+            } else {
+                document.getElementById('message7').innerHTML = "";
+                return true;
+            }
+        }
+        function Validemail() {
+            var email = document.getElementById("email").value;
+            var at = email.indexOf("@");
+            var dot = email.lastIndexOf(".");
+            if (at < 1 || dot < at + 2) {
+                document.getElementById("message2").innerHTML = "<h6 >email must containt @ and . </h6>";
+                return false;
+            } else {
+                document.getElementById("message2").innerHTML = "";
+                return true;
+            }
+        }
+       
+
+
+
+
+
+
     </script>
 </body>
 
