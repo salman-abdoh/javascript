@@ -7,11 +7,16 @@
             text-align: center;
             background-color: bisque;
         }
+        .theme-mode {
+    background-color: black;
+    /*rgb(228, 228, 228);*/
+    color: white;
 
+}
         form {
             text-align: center;
             width: 100vw;
-            background-color: bisque;
+            
 
             height: 50vw;
 
@@ -36,9 +41,9 @@
             padding: 10px;
             margin: 10px;
             background-color: rgb(46, 44, 44);
-            height: 2vw;
+            height: 2vw;}
 
-        }
+           
     </style>
 </head>
 
@@ -65,7 +70,7 @@
             <input type="password" name="pass" id="pass" class="form-control" placeholder="password"
                 onkeyup="validatePassword()">
             <div id="message3"></div>
-
+         
         </div>
 
 
@@ -87,6 +92,10 @@
         <div class="form-group">
             <button type="submit">Submit</button>
         </div>
+        <label class="switch">
+            <input id="switch-btn" onclick="changeTheme()" type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
     </form>
 
 
@@ -156,7 +165,7 @@
                 return false;
             }
 
-
+    
 
         }
         function nameval() {
@@ -247,10 +256,13 @@
        
 
 
-
-
-
-
+       
+        function changeTheme() {
+  
+    
+  var element = document.body;
+  element.classList.toggle("theme-mode");
+           }
     </script>
 </body>
 
