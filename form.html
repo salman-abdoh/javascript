@@ -45,7 +45,7 @@
 
 <body>
     <h1>my form</h1>
-    <form action=form.html" id="form" name="form1" onsubmit="return valid();">
+    <form action="form.html" id="form" name="form1" onsubmit="return valid();">
         <div class="form-group">
             <input type="text" name="name" id="name" onkeyup="nameval()" class="form-control" placeholder="your name">
             <div id="message"></div>
@@ -150,9 +150,9 @@
             } else if (website == "") {
                 document.getElementById("message6").innerHTML = "<h6 style='color:yellow;'>website can't be blank, this file requaiyellow</h6>";
                 return false;
-            } else if (age > 18) {
+            } else if (age < 18) {
 
-                document.getElementById("message1").innerHTML = "<h6 style='color:black;'>age must be less than 19 </h6>";
+                document.getElementById("message1").innerHTML = "<h6 style='color:black;'>age must be more than 18 </h6>";
                 return false;
             }
 
@@ -191,7 +191,7 @@
             var maidate = 18;
 
 
-            if (age <= maidate) {
+            if (age <=maidate) {
                 document.getElementById('message1').innerHTML = "your age must be 18 or more than 18";
             } else {
                 document.getElementById('message1').innerHTML = "";
